@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Pomodoro Clock @freeCodeCamp</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Allerta+Stencil|Kurale" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>Pomodoro Clock</h1>
+    </header>
+    <aside id="break">
+      <h2>Break Length</h2>
+      <div id="breakControls">
+        <span class="minus">-</span>
+        <span class="breakLength">5</span>
+        <span class="plus">+</span>
+      </div>
+    </aside>
+    <aside id="work">
+      <h2>Session Length</h2>
+      <div id="workControls">
+        <span class="minus">-</span>
+        <span class="workLength">25</span>
+        <span class="plus">+</span>
+      </div>
+    </aside>
+
+    <svg id="clock" width="300" height="300">
+      <circle class="workRestTime" cx='150' cy='150' r='150'/>
+      <circle class="minutes" cx='150' cy='150' r='150'/>
+      <defs>
+       <filter id="shadow">
+         <feDropShadow dx="0" dy="0" stdDeviation="4"/>
+       </filter>
+      </defs>
+      <circle class="inside" cx='150' cy='150' r='120'/>
+      <text id="time" x="150" y="-135" font-size="60" text-anchor="middle"></text>
+    </svg>
+  </main>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
