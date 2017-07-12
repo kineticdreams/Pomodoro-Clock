@@ -5,7 +5,8 @@
   <title>Pomodoro Clock @freeCodeCamp</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Allerta+Stencil|Kurale" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700|Kurale" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Kurale|Lekton:400,400i,700" rel="stylesheet"> -->
   <link href="css/main.css" rel="stylesheet">
 
 </head>
@@ -15,34 +16,38 @@
     <header>
       <h1>Pomodoro Clock</h1>
     </header>
-    <aside id="break">
-      <h2>Break Length</h2>
-      <div id="breakControls">
-        <span class="minus">-</span>
-        <span class="breakLength">5</span>
-        <span class="plus">+</span>
+
+    <aside id="rest">
+      <h2>Rest Length</h2>
+      <div class="controls">
+        <span class="c minusR">-</span>
+        <span class="restLength">1</span>
+        <span class="c plusR">+</span>
       </div>
     </aside>
+    <button id="reset" type="button" name="reset">Reset</button>
     <aside id="work">
       <h2>Session Length</h2>
-      <div id="workControls">
-        <span class="minus">-</span>
-        <span class="workLength">25</span>
-        <span class="plus">+</span>
+      <div class="controls">
+        <span class="c minusW">-</span>
+        <span class="workLength">2</span>
+        <span class="c plusW">+</span>
       </div>
     </aside>
 
     <svg id="clock" width="300" height="300">
-      <circle class="workRestTime" cx='150' cy='150' r='150'/>
-      <circle class="minutes" cx='150' cy='150' r='150'/>
       <defs>
        <filter id="shadow">
-         <feDropShadow dx="0" dy="0" stdDeviation="4"/>
+         <feDropShadow dx="0" dy="0" stdDeviation="5"/>
        </filter>
       </defs>
+      <circle class="workRestTime" cx='150' cy='150' r='150'/>
+      <circle class="minutes" cx='150' cy='150' r='150'/>
       <circle class="inside" cx='150' cy='150' r='120'/>
-      <text id="time" x="150" y="-135" font-size="60" text-anchor="middle"></text>
+      <text id="sessionLabel" x="150" y="-150" font-size="45" text-anchor="middle"></text>
+      <text id="time" x="150" y="-90" font-size="45" text-anchor="middle"></text>
     </svg>
+
   </main>
   <script src="js/main.js"></script>
 </body>

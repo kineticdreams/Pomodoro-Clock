@@ -1,23 +1,22 @@
 body {
-  background: rgba(3, 101, 100, 1);
-  /*background: rgba(3,22,52, 1);*/
+  background: rgba(3, 101, 100, .9);
   font-family: sans-serif;
-  color: rgba(232,221,203, 1);
+  color: rgba(232, 221, 203, 1);
   font-family: "Kurale", sans-serif;
 }
 
-main, #break, #work, header, #breakControls, #workControls, #clock {
+main, #rest, #work, header, #restControls, #workControls, #clock {
   display: grid;
 }
 
 main {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 100px 1fr;
   grid-template-rows: 150px 100px 350px;
   width: 700px;
   height: 700px;
   margin: 0 auto;
   justify-content: center;
-  font-family: "Allerta Stencil", sans-serif;
+  font-family: "Inconsolata", monospace;
 }
 
 h1 {
@@ -26,63 +25,95 @@ h1 {
   margin-top: 11%;
   background: #000;
   color: transparent;
-  text-shadow: 0px 2px 3px rgba(255,255,255, .7);
+  text-shadow: 0px 2px 3px rgba(255, 255, 255, .7);
   -webkit-background-clip: text;
-    -moz-background-clip: text;
-         background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
 }
 
 header {
   justify-content: center;
-  grid-column: 1 / span 2;
+  grid-column: 1 / span 3;
   grid-row: 1;
 }
 
-#break {
+#rest {
   justify-content: center;
   grid-column: 1;
   grid-row: 2;
 }
 
-#work {
+#reset {
+  font-family: "Inconsolata", monospace;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgba(3, 101, 100, .9);
   grid-column: 2;
-  justify-content: center;
+  grid-row: 2;
+  border-radius: 50%;
+  border: transparent;
+  background-color: rgba(205, 179, 128, .7);
+  box-shadow: 1px 1px 2px 1px rgba(3, 54, 73, 0.9) inset, 1px 1px 4px 1px rgba(3, 54, 73, 0.6);
+  transition: all .1s ease-in-out;
 }
 
-#breakControls, #workControls {
+#reset:hover {
+  background-color: rgba(205, 179, 128, 1);
+}
+
+#reset:active {
+  transform: scale(.9);
+}
+
+#reset:focus {
+  outline: 0;
+}
+
+#work {
+  grid-column: 3;
+  justify-content: center;
+  grid-row: 2;
+}
+
+.controls {
   grid-template-columns: repeat(3, 1fr);
   justify-self: center;
   grid-column-gap: 8px;
-
   margin: 0;
   padding: 0;
-
-    font-size: 1.3rem;
+  font-size: 1.3rem;
 }
 
-.minus {
-margin: 0;
-padding: 0;
+span {
+  font-weight: bold;
+}
+
+.c {
+  font-size: 1.5rem;
+}
+
+.c:hover {
+  cursor: pointer;
 }
 
 #clock {
-  grid-column: 1 / span 2;
+  grid-column: 1 / span 3;
   transform: rotate(-90deg);
-	border-radius: 50%;
+  border-radius: 50%;
   justify-self: center;
   align-self: center;
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.6) inset, 1px 1px 5px 1px rgba(0, 0, 0, 0.6);
 }
 
-
 .minutes {
   fill: transparent;
-  stroke: rgba(232,221,203, 0.7);
+  stroke: rgba(232, 221, 203, 0.7);
   stroke-width: 60;
-  stroke-dasharray: 0 942; /*2 + PI + 150(radius) = 942*/
-  filter:url(#shadow);
+  stroke-dasharray: 0 942;
+  /*2 + PI + 150(radius) = 942*/
+  filter: url(#shadow);
   animation-name: fillup;
-  animation-duration: 10s;
+  animation-duration: 60s;
   animation-timing-function: linear;
   /*animation-delay: 0s;*/
   animation-direction: linear;
@@ -93,12 +124,13 @@ padding: 0;
 
 .workRestTime {
   fill: transparent;
-  stroke: rgba(205,179,128, .8);
+  stroke: rgba(205, 179, 128, .8);
   stroke-width: 300;
-  stroke-dasharray: 0 942; /*2 + PI + 150(radius) = 942*/
-  filter:url(#shadow);
+  stroke-dasharray: 0 942;
+  /*2 + PI + 150(radius) = 942*/
+  filter: url(#shadow);
   animation-name: fillup;
-  animation-duration: 40s;
+  animation-duration: 60s;
   animation-timing-function: linear;
   /*animation-delay: 0s;*/
   animation-direction: linear;
@@ -108,24 +140,32 @@ padding: 0;
 }
 
 .inside {
-  /*fill: rgb(0, 180, 0);*/
-  fill: rgb(180, 0, 0);
+  fill: rgb(0, 180, 0);
   fill-opacity: 0.4;
-  /*stroke: rgb(164, 70, 53);*/
-  filter:url(#shadow);
-
+  filter: url(#shadow);
 }
 
-.paused {
+.red {
+  fill: rgb(180, 0, 0);
+}
+
+.running {
   -webkit-animation-play-state: running;
   animation-play-state: running;
 }
 
 @keyframes fillup {
-	to {stroke-dasharray: 942 942};
+  to {
+    stroke-dasharray: 942 942
+  }
+  ;
 }
 
 text {
   transform: rotate(90deg);
   fill: #e8ddcb;
+}
+
+#sessionLabel {
+  font-size: 2rem;
 }
