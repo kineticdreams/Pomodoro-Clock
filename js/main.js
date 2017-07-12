@@ -12,8 +12,6 @@ let workMinutes = parseInt(workEl.textContent);
 let restMinutes = parseInt(restEl.textContent);
 let myInterval;
 let canWork = true;
-let workM = workMinutes;
-let restM = restMinutes;
 
 function pad(number) { //add a "0" in front of 1-9 numbers
   return (number < 10) ? `0${number.toString()}` : number.toString();
@@ -35,38 +33,21 @@ function changeAnimDuration(min) {
 }
 
 function resetAnimation() {
-  minState.style.webkitAnimation = "none";
-  workRestState.style.webkitAnimation = "none";
+  workRestState.classList.remove("runAnimation");
+  minState.classList.remove("runAnimation");
   setTimeout(() => {
-    minState.style.webkitAnimation = "";
-    workRestState.style.webkitAnimation = "";
-    workRestState.classList.remove("running");
-    minState.classList.remove("running");
-  }, 10);
+    workRestState.classList.add("runAnimation");
+    minState.classList.add("runAnimation");
+  }, 1);
 }
 
 // initializing display and
 time.textContent = timeFormat(workMinutes);
 changeAnimDuration(workMinutes);
 
-reset.addEventListener("click", () => {
-  // isPaused++;
-  workRestState.classList.remove("running");
-  minState.classList.remove("running");
-  resetAnimation();
-  clearInterval(myInterval);
-  seconds = 0;
-  time.textContent = timeFormat(workMinutes);
-  // isPaused = 1;
-});
-
-
 document.addEventListener("click", (event) => { // start/stop clock
   console.log(event);
-  // event.preventDefault;
-
-
-
+  event.preventDefault;
   // implementation of plus/minus buttons
   if (isPaused % 2 !== 0) {
     console.log("Before Switch:", restMinutes, workMinutes, seconds, canWork, workRestState.style.animationDuration, minState.style.animationPlayState);
@@ -116,13 +97,13 @@ document.addEventListener("click", (event) => { // start/stop clock
     }
   } // end of code for +/-
 
-  // let workM = workMinutes;
-  // let restM = restMinutes;
+  let workM = workMinutes;
+  let restM = restMinutes;
 
   if (event.target.nearestViewportElement.id === "clock") {
     isPaused++;
-    workRestState.classList.toggle("running");
-    minState.classList.toggle("running");
+    workRestState.classList.toggle("paused");
+    minState.classList.toggle("paused");
     clearInterval(myInterval);
 
     myInterval = setInterval(() => {
@@ -173,4 +154,4 @@ document.addEventListener("click", (event) => { // start/stop clock
 
     }, 1000); // end of interval
   }
-});
+}, false);
